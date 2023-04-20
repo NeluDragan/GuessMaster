@@ -1,45 +1,44 @@
-import React, { useState } from 'react';
-import { StyleSheet, ImageBackground, SafeAreaView } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
-import { StatusBar } from 'expo-status-bar';
-import Header from './components/Header';
-import StartGameScreen from './screens/StartGameScreen';
-import Colors from './constants/colors';
-import GameScreen from './screens/GameScreen';
-import GameOverScreen from './screens/GameOverScreen';
+import React, { useState } from 'react'
+import { StyleSheet, ImageBackground, SafeAreaView } from 'react-native'
+import { LinearGradient } from 'expo-linear-gradient'
+import { StatusBar } from 'expo-status-bar'
+import Header from './components/Header'
+import StartGameScreen from './screens/StartGameScreen'
+import Colors from './constants/colors'
+import GameScreen from './screens/GameScreen'
+import GameOverScreen from './screens/GameOverScreen'
+import colors from './constants/colors'
 
 export default function App() {
-  const [userNumber, setUserNumber] = useState();
-  const [gameIsOver, setGameIsOver] = useState(true);
-  const [startGameScreen, setStartGameScreen] = useState(true);
-  const [guessNumber, setGuessNumber] = useState(0);
+  const [userNumber, setUserNumber] = useState()
+  const [gameIsOver, setGameIsOver] = useState(true)
+  const [startGameScreen, setStartGameScreen] = useState(true)
+  const [guessNumber, setGuessNumber] = useState(0)
 
   function pickedNumberHandler(pickedNumber) {
-    setUserNumber(pickedNumber);
-    setGameIsOver(false);
+    setUserNumber(pickedNumber)
+    setGameIsOver(false)
   }
 
   function gameOverHandler(numberOfRounds) {
-    setGameIsOver(true);
-    setGuessNumber(numberOfRounds);
+    setGameIsOver(true)
+    setGuessNumber(numberOfRounds)
   }
 
   function GameStartHandler() {
-    setStartGameScreen(true);
+    setStartGameScreen(true)
   }
 
   function StartNewGameHandler() {
-    setUserNumber(null);
-    setGameIsOver(true);
-    setGuessNumber(0);
+    setUserNumber(null)
+    setGameIsOver(true)
+    setGuessNumber(0)
   }
 
-  let screen = <StartGameScreen onPickNumber={pickedNumberHandler} />;
+  let screen = <StartGameScreen onPickNumber={pickedNumberHandler} />
 
   if (userNumber) {
-    screen = (
-      <GameScreen userChoice={userNumber} onGameOver={gameOverHandler} />
-    );
+    screen = <GameScreen userChoice={userNumber} onGameOver={gameOverHandler} />
   }
 
   if (gameIsOver && userNumber) {
@@ -49,13 +48,13 @@ export default function App() {
         roundsNumber={guessNumber}
         onStartNewGame={StartNewGameHandler}
       />
-    );
+    )
   }
 
   return (
     <>
       <StatusBar style="auto" />
-      <LinearGradient colors={['#e5327a', 'black']} style={styles.screen}>
+      <LinearGradient colors={[colors.primary, 'black']} style={styles.screen}>
         <ImageBackground
           source={require('./assets/images/background.png')}
           resizeMode="cover"
@@ -67,7 +66,7 @@ export default function App() {
         </ImageBackground>
       </LinearGradient>
     </>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
@@ -78,4 +77,4 @@ const styles = StyleSheet.create({
   backgroundImage: {
     opacity: 0.25,
   },
-});
+})

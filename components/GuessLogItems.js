@@ -1,4 +1,5 @@
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native'
+import colors from '../constants/colors'
 
 function GuessLogItems({ roundNumber, guess }) {
   return (
@@ -6,10 +7,10 @@ function GuessLogItems({ roundNumber, guess }) {
       <Text>#{roundNumber}</Text>
       <Text> Opponent's guess: {guess}</Text>
     </View>
-  );
+  )
 }
 
-export default GuessLogItems;
+export default GuessLogItems
 
 const styles = StyleSheet.create({
   listItems: {
@@ -17,7 +18,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     padding: 12,
     marginVertical: 8,
-    backgroundColor: '#f7287b',
+    backgroundColor: colors.primary,
     borderRadius: 40,
     borderWidth: 1,
     elevation: 4,
@@ -28,4 +29,4 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: '100%',
   },
-});
+})
